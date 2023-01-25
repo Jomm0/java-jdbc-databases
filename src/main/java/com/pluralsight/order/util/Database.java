@@ -5,19 +5,27 @@ import org.h2.tools.RunScript;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
  * Singleton class to get database connections
  */
 public class Database {
+    private String url;
+    private String user;
+    private String password;
     private static Database instance = null;
     private static boolean isInitialized = false;
 
     /**
      * Private constructor
      */
-    private Database() { }
+    private Database() {
+        this.url = "jdbc:h2:mem:orders;DB_CLOSE_DELAY=-1";
+        this.user = "sa";
+        this.password = "";
+    }
 
     /**
      * Method that creates an instance of this class (if it's not created already)
@@ -49,7 +57,7 @@ public class Database {
      * @throws SQLException In case of a database error
      */
     public Connection getConnection() throws SQLException {
-        Connection connection = null;
+        Connection connection = DriverManager.getConnection(this.url, this.user, this.password);
 
         if(!isInitialized && connection != null) {
             initializeDatabase(connection);
