@@ -18,12 +18,14 @@ import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.mockito.exceptions.verification.WantedButNotInvoked;
 import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
+//@PowerMockIgnore({"kotlin.*"})
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(UpdateOrderDao.class)
 public class Module4_Tests {
